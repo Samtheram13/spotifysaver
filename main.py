@@ -40,7 +40,7 @@ while (True):
 
 # Select 4th index of plIDS for AlexWala Stream Music
 
-dictTracks = sp.user_playlist_tracks(user="0o3133j3p3nrq81uoex50m50h",
+dictTracks = sp.user_playlist_tracks(user=userID,
                                      playlist_id=plDIC[playlistSearch],
                                      limit=100)
 
