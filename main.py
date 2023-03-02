@@ -1,7 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import cred
-
+import csv
 #0o3133j3p3nrq81uoex50m50h
 
 
@@ -52,3 +52,11 @@ for y in dictTracks["items"]:
 	 str((y["track"]["duration_ms"] // 1000) // 60) + ":" + str(
 	  ((y["track"]["duration_ms"]) // 1000) % 60).zfill(2))
 print("-----------------")
+
+with open('new.csv', 'w', newline='') as csvfile:
+	for z in dictTracks["items"]:
+		spamwriter = csv.writer(csvfile, delimiter=' ')
+		spamwriter.writerow(z["track"]["name"])
+		spamwriter.writerow(z["track"]["artists"][0]["name"])
+		spamwriter.writerow('')
+		
