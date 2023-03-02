@@ -44,20 +44,17 @@ dictTracks = sp.user_playlist_tracks(user="0o3133j3p3nrq81uoex50m50h",
                                      playlist_id=plDIC[playlistSearch],
                                      limit=100)
 
-for y in dictTracks["items"]:
-	print("-----------------")
-	print(
-	 y["track"]["name"], "by:",
-	 y["track"]["artists"][0]["name"] + "\n" + "Length:",
-	 str((y["track"]["duration_ms"] // 1000) // 60) + ":" + str(
-	  ((y["track"]["duration_ms"]) // 1000) % 60).zfill(2))
-print("-----------------")
+# Working the csv file
 
-with open('new.csv', 'w', newline='') as csvfile:
-	writer = csv.writer(csvfile, delimiter=' ', 
-escapechar=" " , quoting=csv.QUOTE_NONE, skipinitialspace=True)
-	for z in dictTracks["items"]:
-		writer.writerow(z["track"]["name"])
-		writer.writerow(z["track"]["artists"][0]["name"])
-		writer.writerow('------------------------------')
-		
+file = 'new.csv'
+fields = ['trackName', 'artist']
+rows = []
+for y in dictTracks["items"]:
+	rows.append([y["track"]["name"], y["track"]["artists"][0]["name"]])
+
+print(rows)
+with open(file, 'w') as csvfile:
+	csvwriter = csv.writer(csvfile)
+
+	csvwriter.writerow(fields)
+	csvwriter.writerows(rows)
