@@ -54,9 +54,10 @@ for y in dictTracks["items"]:
 print("-----------------")
 
 with open('new.csv', 'w', newline='') as csvfile:
+	writer = csv.writer(csvfile, delimiter=' ', 
+escapechar=" " , quoting=csv.QUOTE_NONE, skipinitialspace=True)
 	for z in dictTracks["items"]:
-		spamwriter = csv.writer(csvfile, delimiter=' ')
-		spamwriter.writerow(z["track"]["name"])
-		spamwriter.writerow(z["track"]["artists"][0]["name"])
-		spamwriter.writerow('')
+		writer.writerow(z["track"]["name"])
+		writer.writerow(z["track"]["artists"][0]["name"])
+		writer.writerow('------------------------------')
 		
