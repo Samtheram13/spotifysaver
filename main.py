@@ -1,7 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import cred
-
+import csv
 #0o3133j3p3nrq81uoex50m50h
 
 
@@ -44,11 +44,17 @@ dictTracks = sp.user_playlist_tracks(user="0o3133j3p3nrq81uoex50m50h",
                                      playlist_id=plDIC[playlistSearch],
                                      limit=100)
 
+# Working the csv file
+
+file = 'new.csv'
+fields = ['trackName', 'artist']
+rows = []
 for y in dictTracks["items"]:
-	print("-----------------")
-	print(
-	 y["track"]["name"], "by:",
-	 y["track"]["artists"][0]["name"] + "\n" + "Length:",
-	 str((y["track"]["duration_ms"] // 1000) // 60) + ":" + str(
-	  ((y["track"]["duration_ms"]) // 1000) % 60).zfill(2))
-print("-----------------")
+	rows.append([y["track"]["name"], y["track"]["artists"][0]["name"]])
+
+print(rows)
+with open(file, 'w') as csvfile:
+	csvwriter = csv.writer(csvfile)
+
+	csvwriter.writerow(fields)
+	csvwriter.writerows(rows)
