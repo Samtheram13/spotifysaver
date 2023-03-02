@@ -47,14 +47,14 @@ dictTracks = sp.user_playlist_tracks(user="0o3133j3p3nrq81uoex50m50h",
 # Working the csv file
 
 file = 'new.csv'
-fields = ['trackName', 'artist']
+fields = ['TrackName', 'Artist']
 rows = []
 for y in dictTracks["items"]:
 	rows.append([y["track"]["name"], y["track"]["artists"][0]["name"]])
 
 print(rows)
 with open(file, 'w') as csvfile:
-	csvwriter = csv.writer(csvfile)
+	csvwriter = csv.writer(csvfile, delimiter=' ', quoting=csv.QUOTE_NONE, escapechar=' ')
 
 	csvwriter.writerow(fields)
 	csvwriter.writerows(rows)
