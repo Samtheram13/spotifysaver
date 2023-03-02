@@ -2,6 +2,8 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import cred
 import csv
+import colorama
+from colorama import Fore
 #0o3133j3p3nrq81uoex50m50h
 
 
@@ -58,3 +60,4 @@ with open(file, 'w') as csvfile:
 
 	csvwriter.writerow(fields)
 	csvwriter.writerows(rows)
+print(Fore.GREEN + 'DONE! See csv file for info')
